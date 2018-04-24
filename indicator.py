@@ -1,4 +1,17 @@
-""" Basic Finance Indicator Python Script..."""
+""" 
+#
+# Basic Finance Indicator Python Script...
+# This is not finished, which is the python script of TA for stock.
+# Tool for Stock Analysis
+# Function:
+#  1. Adjusted: calculate adjusted value of a column. (Not Finished)
+#  2. Standardize: calculate (x - mux) / stdx
+#  3. ROC
+#  4. LogReturn
+#  5. MovingAverage(price, windows, method='SMA')
+#  6. RSI
+#
+"""
 from datetime import date, datetime, timedelta
 from deap import creator, base, tools, algorithms
 
@@ -11,9 +24,25 @@ class Indicator(object):
     def __init__(self, ds):
         self.ds = ds
 
+    def Adjusted(self, output_col='Adj{0}', target_col='Close'):
+        # self.ds[output_col.format(target_col)]
+        pass
+
+    def ColDelta(self, n=1, output_col='{0}Delta', target_col='AdjClose'):
+        self.ds[output_col.format(target_col)] = self.ds[target_col].diff().shift(-n)
+        return
+
+    def Standardize(self, output_col='Std{0}', target_col='AdjClose'):
+        mu = self.ds[target_col].mean()
+        sigma = self.ds[target_col].std()
+        self.ds[output_col.format(target_col)} = (self.ds[target_col] - mu) / sigma
+        return
+
     def ROC(self, n=1, output_col='roc', target_col='AdjClose'): # rate of return
         self.ds[output_col] = self.ds[target_col].pct_change(n)
         return
+
+    # def LogReturn(...) <- or merge this to roc?
   
     def SMA(self, n=10, output_col='{0}dSMA', target_col='AdjClose'):
         # simple moving avergae
@@ -101,4 +130,14 @@ class Indicator(object):
         hitRatio = len(which(sampleData[sort(allSignals),"rtn"] > 0))/numberOfTrades
 
         return [totalRtn, numberOfTrades, hitRatio]
+
+    def RawStochasticValue(...):
+    def BollingerBands(...):
+    def MACD(...):
+    def BiasRatio(...):
+    def candlestick(col):
     """
+
+# plot candlestick
+# plot day summary(?)
+

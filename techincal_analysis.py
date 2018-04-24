@@ -1,13 +1,5 @@
 """
-This is not finished, which is the python script of TA for stock.
-Tool for Stock Analysis
-Function:
-  AdjClose: calculate adjusted price. (Not Finished)
-  StandardizePrice
-  DailyReturn
-  LogReturn
-  MovingAverage(price, windows, method='SMA')
-  RSI
+
 """
 # Import:
 from datetime import datetime, timedelta
